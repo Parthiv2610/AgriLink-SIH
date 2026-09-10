@@ -1,0 +1,243 @@
+[
+  {
+    "id": "AUC-2026-001",
+    "fpo_name": "Guntur Mirchi Rythu Utpatti Co.",
+    "registration_no": "FPO/AP/GNT/2021/048",
+    "state": "Andhra Pradesh",
+    "district": "Guntur",
+    "location": "APMC Yard, Guntur",
+    "commodity": "Chilli",
+    "variety": "Teja / Sannam Supreme (Export Quality)",
+    "quantity": 400,
+    "unit": "Quintals",
+    "harvest_date": "2026-09-02",
+    "min_price": 22500,
+    "status": "AWARDED",
+    "created_at": "2026-09-08T10:00:00Z",
+    "closing_time": "2026-09-12T18:00:00Z",
+    "bids": [
+      {
+        "id": "BID-01",
+        "company_name": "ITC Agri Business Division",
+        "buyer_name": "Rajesh Sharma (Head Procurement)",
+        "gstin": "36AAACI1681G1Z4",
+        "bid_price": 24200,
+        "total_amount": 9680000,
+        "timestamp": "2026-09-09T14:30:00Z"
+      },
+      {
+        "id": "BID-02",
+        "company_name": "Everest Spices Pvt Ltd",
+        "buyer_name": "Suresh Patel",
+        "gstin": "27AAACE1234F1Z8",
+        "bid_price": 23800,
+        "total_amount": 9520000,
+        "timestamp": "2026-09-09T16:45:00Z"
+      },
+      {
+        "id": "BID-03",
+        "company_name": "MTR Foods Agro Sourcing",
+        "buyer_name": "Ananya Roy",
+        "gstin": "29AAACM5678B1ZP",
+        "bid_price": 24750,
+        "total_amount": 9900000,
+        "timestamp": "2026-09-10T11:15:00Z"
+      },
+      {
+        "id": "BID-04",
+        "company_name": "swf",
+        "buyer_name": "wefwf",
+        "gstin": "36aaaasaqgfeqrgt4e",
+        "bid_price": 30000,
+        "total_amount": 12000000,
+        "timestamp": "2026-09-10T13:31:59.905299+00:00"
+      }
+    ],
+    "awarded_bid": {
+      "id": "BID-04",
+      "company_name": "swf",
+      "buyer_name": "wefwf",
+      "gstin": "36aaaasaqgfeqrgt4e",
+      "bid_price": 30000,
+      "total_amount": 12000000,
+      "awarded_at": "2026-09-10T13:32:04.405233+00:00"
+    }
+  },
+  {
+    "id": "AUC-2026-002",
+    "fpo_name": "Malwa Golden Grain Kisan Federation",
+    "registration_no": "FPO/PB/ASR/2020/112",
+    "state": "Punjab",
+    "district": "Amritsar",
+    "location": "Rayya Grain Hub, Amritsar",
+    "commodity": "Paddy",
+    "variety": "Basmati 1121 Extra Long Grain",
+    "quantity": 1200,
+    "unit": "Quintals",
+    "harvest_date": "2026-09-05",
+    "min_price": 3950,
+    "status": "AWARDED",
+    "created_at": "2026-09-07T09:00:00Z",
+    "closing_time": "2026-09-13T17:00:00Z",
+    "bids": [
+      {
+        "id": "BID-11",
+        "company_name": "KRBL Limited (India Gate Basmati)",
+        "buyer_name": "Harpreet Singh",
+        "gstin": "07AAACK4422D1ZV",
+        "bid_price": 4350,
+        "total_amount": 5220000,
+        "timestamp": "2026-09-08T12:20:00Z"
+      },
+      {
+        "id": "BID-12",
+        "company_name": "LT Foods (Daawat Rice)",
+        "buyer_name": "Vikram Sethi",
+        "gstin": "06AAACL9012E1Z3",
+        "bid_price": 4420,
+        "total_amount": 5304000,
+        "timestamp": "2026-09-09T18:10:00Z"
+      }
+    ],
+    "awarded_bid": {
+      "id": "BID-12",
+      "company_name": "LT Foods (Daawat Rice)",
+      "buyer_name": "Vikram Sethi",
+      "gstin": "06AAACL9012E1Z3",
+      "bid_price": 4420,
+      "total_amount": 5304000,
+      "awarded_at": "2026-09-10T13:31:22.656875+00:00"
+    }
+  },
+  {
+    "id": "AUC-2026-003",
+    "fpo_name": "Vidarbha Sahakari Kapas Utpadak Sangathan",
+    "registration_no": "FPO/MH/YVT/2022/079",
+    "state": "Maharashtra",
+    "district": "Yavatmal",
+    "location": "APMC Yard, Wani, Yavatmal",
+    "commodity": "Cotton",
+    "variety": "Medium Staple (Shankar-6 Equivalent)",
+    "quantity": 800,
+    "unit": "Quintals",
+    "harvest_date": "2026-09-04",
+    "min_price": 7200,
+    "status": "AWARDED",
+    "created_at": "2026-09-05T08:00:00Z",
+    "closing_time": "2026-09-09T20:00:00Z",
+    "bids": [
+      {
+        "id": "BID-21",
+        "company_name": "Vardhman Textiles Limited",
+        "buyer_name": "Deepak Jain",
+        "gstin": "03AAACV2345M1Z7",
+        "bid_price": 7650,
+        "total_amount": 6120000,
+        "timestamp": "2026-09-06T15:10:00Z"
+      },
+      {
+        "id": "BID-22",
+        "company_name": "Arvind Mills Agri Sourcing",
+        "buyer_name": "Ketan Shah",
+        "gstin": "24AAACA1122J1Z5",
+        "bid_price": 7820,
+        "total_amount": 6256000,
+        "timestamp": "2026-09-08T09:40:00Z"
+      },
+      {
+        "id": "BID-23",
+        "company_name": "Welspun Living Sourcing",
+        "buyer_name": "Pooja Mehta",
+        "gstin": "27AAACW8899K1Z1",
+        "bid_price": 7500,
+        "total_amount": 6000000,
+        "timestamp": "2026-09-07T11:05:00Z"
+      }
+    ],
+    "awarded_bid": {
+      "id": "BID-22",
+      "company_name": "Arvind Mills Agri Sourcing",
+      "buyer_name": "Ketan Shah",
+      "gstin": "24AAACA1122J1Z5",
+      "bid_price": 7820,
+      "total_amount": 6256000,
+      "awarded_at": "2026-09-09T20:05:00Z"
+    }
+  },
+  {
+    "id": "AUC-2026-004",
+    "fpo_name": "Madanapalle Rayalaseema Horticulture FPO",
+    "registration_no": "FPO/AP/CTR/2021/305",
+    "state": "Andhra Pradesh",
+    "district": "Chittoor",
+    "location": "Madanapalle Sub-Market Yard",
+    "commodity": "Tomato",
+    "variety": "Grade A Hybrid Table & Processing",
+    "quantity": 600,
+    "unit": "Quintals",
+    "harvest_date": "2026-09-09",
+    "min_price": 2100,
+    "status": "OPEN",
+    "created_at": "2026-09-09T07:00:00Z",
+    "closing_time": "2026-09-11T16:00:00Z",
+    "bids": [
+      {
+        "id": "BID-31",
+        "company_name": "Reliance Retail Fresh Foods",
+        "buyer_name": "Raghuveer N.",
+        "gstin": "27AAACR1234A1ZT",
+        "bid_price": 2350,
+        "total_amount": 1410000,
+        "timestamp": "2026-09-09T17:30:00Z"
+      },
+      {
+        "id": "BID-32",
+        "company_name": "Kisan Food Processing (HUL)",
+        "buyer_name": "Sunil Verma",
+        "gstin": "27AAACH1111L1Z0",
+        "bid_price": 2480,
+        "total_amount": 1488000,
+        "timestamp": "2026-09-10T10:00:00Z"
+      }
+    ],
+    "awarded_bid": null
+  },
+  {
+    "id": "AUC-2026-005",
+    "fpo_name": "Sehore Sharbati Krishi Producer Co.",
+    "registration_no": "FPO/MP/SHR/2022/194",
+    "state": "Madhya Pradesh",
+    "district": "Sehore",
+    "location": "Krishi Upaj Mandi, Sehore",
+    "commodity": "Wheat",
+    "variety": "GI Tagged Sharbati Golden Grain",
+    "quantity": 1500,
+    "unit": "Quintals",
+    "harvest_date": "2026-09-01",
+    "min_price": 3200,
+    "status": "OPEN",
+    "created_at": "2026-09-06T11:00:00Z",
+    "closing_time": "2026-09-14T18:00:00Z",
+    "bids": [
+      {
+        "id": "BID-41",
+        "company_name": "Aashirvaad Atta (ITC Ltd)",
+        "buyer_name": "Manoj Saxena",
+        "gstin": "19AAACI1681G1Z4",
+        "bid_price": 3550,
+        "total_amount": 5325000,
+        "timestamp": "2026-09-07T14:10:00Z"
+      },
+      {
+        "id": "BID-42",
+        "company_name": "Adani Wilmar (Fortune)",
+        "buyer_name": "Pranav Trivedi",
+        "gstin": "24AAACA5555G1Z9",
+        "bid_price": 3620,
+        "total_amount": 5430000,
+        "timestamp": "2026-09-08T16:25:00Z"
+      }
+    ],
+    "awarded_bid": null
+  }
+]

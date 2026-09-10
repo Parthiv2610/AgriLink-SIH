@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# macOS/AppleDouble junk
+._*
+.DS_Store
+
+# Local tooling
+.freebuff/

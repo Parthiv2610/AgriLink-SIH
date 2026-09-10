@@ -1,0 +1,25 @@
+%% AgriLink — Single-Slide Diagrams (Team APEX {SYNTAX} @ MGIT · SIH 2026)
+%% Paste each diagram into mermaid.live or a PPT Mermaid plugin, export as PNG/SVG,
+%% then drop the image onto the slide. Export at high zoom for legibility.
+
+%% ============ DIAGRAM 1: SYSTEM ARCHITECTURE ============
+flowchart TD
+    U[Farmer · FPO · Corporate] -->|browser| B[Browser App<br/>HTML5 · CSS3 · JS · Web Speech · 6 languages]
+    B -->|"GET /api/*  ·  POST /api/bidding/*"| S[Python 3 Server<br/>stdlib only · ThreadingHTTPServer]
+    S --> D[(JSON Data Store<br/>45 mandi records · auction lots)]
+    S -->|live sync| A[data.gov.in Agmarknet API<br/>Govt. of India]
+    A -. offline fallback .-> D
+
+%% ============ DIAGRAM 2: PROCESS FLOWCHART ============
+flowchart LR
+    A[Open AgriLink] --> B[Choose language<br/>6 Indian languages]
+    B --> C[Filter crop · state · mandi]
+    C --> D[Official prices<br/>min · modal · max]
+    D --> E[Compare mandis<br/>voice readout]
+    E --> F[Earnings calculator<br/>middleman vs AgriLink]
+    F --> G{FPO or Corporate}
+    G --> H[FPO hosts bulk lot]
+    G --> I[Corporate sealed blind bid]
+    H --> J[Auction closes · highest bid awarded]
+    I --> J
+    J --> K[Direct contract<br/>0% middleman cut]
