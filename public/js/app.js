@@ -150,8 +150,31 @@ function setupEventListeners() {
     tab.addEventListener("click", () => {
       const viewName = tab.dataset.view;
       switchView(viewName);
+      closeNavSidebar();
     });
   });
+
+  // Slide-out Sidebar Menu (open/close)
+  const navSidebar = document.getElementById("navSidebar");
+  const navBackdrop = document.getElementById("navBackdrop");
+  const navHamburger = document.getElementById("navHamburger");
+  const navSidebarClose = document.getElementById("navSidebarClose");
+
+  function openNavSidebar() {
+    if (navSidebar) navSidebar.classList.add("open");
+    if (navBackdrop) navBackdrop.classList.add("open");
+  }
+  function closeNavSidebar() {
+    if (navSidebar) navSidebar.classList.remove("open");
+    if (navBackdrop) navBackdrop.classList.remove("open");
+  }
+  if (navHamburger) navHamburger.addEventListener("click", openNavSidebar);
+  if (navSidebarClose) navSidebarClose.addEventListener("click", closeNavSidebar);
+  if (navBackdrop) navBackdrop.addEventListener("click", closeNavSidebar);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeNavSidebar();
+  });
+  window.addEventListener("resize", debounce(renderPriceChart, 200));
 
   if (elements.brandHomeClick) {
     elements.brandHomeClick.addEventListener("click", () => switchView("home"));
@@ -350,7 +373,6 @@ function switchView(viewName) {
   const viewFarmer = document.getElementById("view-farmer");
   const viewFpo = document.getElementById("view-fpo");
   const viewCorporate = document.getElementById("view-corporate");
-  const viewCallback = document.getElementById("view-callback");
 
   // Fallbacks for legacy view IDs if present
   const viewPrices = document.getElementById("view-prices");
@@ -391,11 +413,6 @@ function switchView(viewName) {
     }
   }
 
-  if (viewCallback) {
-    viewCallback.style.display = viewName === "callback" ? "block" : "none";
-    viewCallback.classList.toggle("hidden", viewName !== "callback");
-  }
-
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 window.switchView = switchView;
@@ -431,6 +448,7 @@ function setLanguage(lang) {
   populateStateDropdown();
   populateDistricts();
   renderTable();
+  renderPriceChart();
   populateCalculatorSelect();
   calculateEarnings();
   renderFpoLots(state.biddingLots);
@@ -619,6 +637,8 @@ async function loadPrices() {
       state.records = data.records;
       updateMetrics(data.stats);
       renderTable();
+      renderPriceChart();
+      updateBestMandi();
       populateCalculatorSelect();
       calculateEarnings();
     }
@@ -667,6 +687,102 @@ function updateMetrics(stats) {
   if (elements.metricMandisCount) elements.metricMandisCount.textContent = stats.total_markets.toString();
 }
 
+// Render Mandi Modal Price Comparison Bar Chart (HTML5 Canvas)
+function renderPriceChart() {
+  const canvas = document.getElementById("priceChart");
+  if (!canvas) return;
+  const wrap = canvas.parentElement;
+  const lang = state.lang;
+  const records = state.records || [];
+
+  const subtitleEl = document.getElementById("chartSubtitle");
+  if (subtitleEl) {
+    const cropLabel = state.selectedCommodity && state.selectedCommodity !== "all"
+      ? getCommodityName(state.selectedCommodity, lang)
+      : t("all_crops", lang);
+    subtitleEl.textContent = cropLabel;
+  }
+
+  // Crisp rendering on hi-DPI screens
+  const dpr = window.devicePixelRatio || 1;
+  const cssW = wrap.clientWidth || 800;
+  const cssH = 280;
+  canvas.width = cssW * dpr;
+  canvas.height = cssH * dpr;
+  canvas.style.width = cssW + "px";
+  canvas.style.height = cssH + "px";
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, cssW, cssH);
+
+  if (!records.length) {
+    ctx.font = "600 15px Inter, Arial, sans-serif";
+    ctx.fillStyle = "#64748b";
+    ctx.textAlign = "center";
+    ctx.fillText("🔍 " + t("no_records", lang), cssW / 2, cssH / 2);
+    return;
+  }
+
+  // Top 12 mandis by modal price (ascending so the largest sits at the bottom)
+  const data = records.slice().sort((a, b) => a.modal_price - b.modal_price).slice(-12);
+
+  const padL = 175, padR = 95, padT = 20, padB = 16;
+  const chartW = cssW - padL - padR;
+  const barSlot = (cssH - padT - padB) / data.length;
+  const barH = Math.min(26, barSlot - 7);
+  const maxPrice = Math.max(...data.map(r => r.modal_price));
+  const niceMax = Math.max(1000, Math.ceil(maxPrice / 5000) * 5000);
+  const xFor = p => padL + (p / niceMax) * chartW;
+
+  // Vertical gridlines + axis labels
+  ctx.strokeStyle = "#e2e8f0";
+  ctx.lineWidth = 1;
+  ctx.font = "500 11px Inter, Arial, sans-serif";
+  ctx.textAlign = "right";
+  ctx.fillStyle = "#94a3b8";
+  const steps = 5;
+  for (let i = 0; i <= steps; i++) {
+    const val = Math.round((niceMax / steps) * i);
+    const x = xFor(val);
+    ctx.beginPath();
+    ctx.moveTo(x, padT);
+    ctx.lineTo(x, cssH - padB);
+    ctx.stroke();
+    ctx.fillText("₹" + val.toLocaleString("en-IN"), x - 6, cssH - padB + 13);
+  }
+
+  // Bars + mandi labels + price labels
+  data.forEach((r, i) => {
+    const y = padT + i * barSlot + 2;
+    const bw = xFor(r.modal_price) - padL;
+    const grad = ctx.createLinearGradient(padL, 0, padL + bw, 0);
+    grad.addColorStop(0, "#10b981");
+    grad.addColorStop(1, "#059669");
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    if (ctx.roundRect) {
+      ctx.roundRect(padL, y, Math.max(bw, 2), barH, 4);
+    } else {
+      ctx.rect(padL, y, Math.max(bw, 2), barH);
+    }
+    ctx.fill();
+
+    // Mandi name (left axis)
+    ctx.fillStyle = "#334155";
+    ctx.font = "600 12.5px Inter, Arial, sans-serif";
+    ctx.textAlign = "right";
+    let label = r.market;
+    if (label.length > 22) label = label.slice(0, 21) + "…";
+    ctx.fillText(label, padL - 10, y + barH / 2 + 4);
+
+    // Price at bar end
+    ctx.fillStyle = "#166534";
+    ctx.font = "700 12px Inter, Arial, sans-serif";
+    ctx.textAlign = "left";
+    ctx.fillText("₹" + r.modal_price.toLocaleString("en-IN"), xFor(r.modal_price) + 6, y + barH / 2 + 4);
+  });
+}
+
 // Render Mandi Price Table
 function renderTable() {
   if (!elements.mandiTableBody) return;
@@ -679,7 +795,7 @@ function renderTable() {
   if (count === 0) {
     elements.mandiTableBody.innerHTML = `
       <tr>
-        <td colspan="11" class="empty-state">
+        <td colspan="8" class="empty-state">
           <div>🔍 ${t("no_records", lang)}</div>
         </td>
       </tr>
@@ -713,16 +829,14 @@ function renderTable() {
         <td><strong>${r.market}</strong></td>
         <td><span class="variety-pill">${r.variety || 'FAQ'}</span></td>
         <td><small class="text-muted">${r.arrival_date || '10/09/2026'}</small></td>
-        <td>₹${r.min_price.toLocaleString("en-IN")}</td>
-        <td>₹${r.max_price.toLocaleString("en-IN")}</td>
-        <td><span class="modal-price-tag">₹${r.modal_price.toLocaleString("en-IN")}</span></td>
-        <td><span class="unit-price-tag">₹${perKg}</span></td>
-        <td>
-          <div class="spread-bar-wrap" title="Min: ₹${r.min_price} | Max: ₹${r.max_price}">
+        <td class="num">
+          <span class="modal-price-tag">₹${r.modal_price.toLocaleString("en-IN")}</span>
+          <div class="spread-bar-wrap" title="Min: ₹${r.min_price.toLocaleString("en-IN")} | Max: ₹${r.max_price.toLocaleString("en-IN")}">
             <div class="spread-bar-fill" style="width: ${spreadPct}%"></div>
           </div>
-          <small class="text-muted" style="font-size:0.75rem;">₹${r.min_price} - ₹${r.max_price}</small>
+          <small class="text-muted spread-range-text">₹${r.min_price.toLocaleString("en-IN")} – ₹${r.max_price.toLocaleString("en-IN")}</small>
         </td>
+        <td class="num"><span class="unit-price-tag">₹${perKg}</span></td>
         <td>
           <button class="btn-voice" onclick="readPriceAudio(${idx})">
             🔊 ${t("voice_btn", lang)}
@@ -786,6 +900,26 @@ window.readPriceAudio = function(index) {
   window.speechSynthesis.speak(utterance);
 };
 
+
+// Best Mandi For Your Crop — highest-paying mandi for the selected commodity
+function updateBestMandi() {
+  const card = document.getElementById("bestMandiCard");
+  const valueEl = document.getElementById("bestMandiValue");
+  if (!card || !valueEl) return;
+  const lang = state.lang;
+  const records = state.records || [];
+  if (!records.length || state.selectedCommodity === "all") {
+    valueEl.textContent = t("best_mandi_hint", lang);
+    card.classList.remove("has-best");
+    return;
+  }
+  const best = records.reduce((a, b) => (b.modal_price > a.modal_price ? b : a));
+  const cropName = getCommodityName(best.commodity, lang);
+  const stateName = getStateName(best.state, lang);
+  valueEl.textContent = `${cropName} — ${best.market}, ${stateName} · ₹${best.modal_price.toLocaleString("en-IN")}/q (₹${(best.modal_price / 100).toFixed(1)}/kg)`;
+  card.classList.add("has-best");
+}
+
 // Reset All Filters
 function resetFilters() {
   state.selectedCommodity = "all";
@@ -820,8 +954,6 @@ function exportToCSV() {
     t("th_mandi", lang),
     t("th_variety", lang),
     t("th_date", lang),
-    t("th_min_price", lang),
-    t("th_max_price", lang),
     t("th_modal_price", lang),
     t("th_unit_price", lang)
   ];

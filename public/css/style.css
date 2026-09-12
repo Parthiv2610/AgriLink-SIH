@@ -187,15 +187,126 @@ header.app-header {
   color: var(--text-muted);
 }
 
-/* Navigation Tabs */
-.nav-tab-bar {
+/* Hamburger Menu Toggle (opens the slide-out sidebar) */
+.nav-hamburger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-muted);
+  border-radius: 10px;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+.nav-hamburger:hover {
+  background: #ffffff;
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Slide-out Sidebar Navigation */
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  z-index: 95;
+}
+.nav-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 320px;
+  max-width: 85vw;
+  background: #ffffff;
+  box-shadow: 4px 0 24px rgba(15, 23, 42, 0.18);
+  z-index: 100;
+  transform: translateX(-100%);
+  transition: transform 0.28s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 16px;
+}
+.nav-sidebar.open {
+  transform: translateX(0);
+}
+
+.nav-sidebar-head {
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+.nav-sidebar-title {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--primary);
+  letter-spacing: 0.5px;
+}
+.nav-sidebar-close {
+  width: 38px;
+  height: 38px;
+  border: none;
   background: var(--bg-muted);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 4px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  color: var(--text-body);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.nav-sidebar-close:hover {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.nav-sidebar-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  overflow-y: auto;
+}
+.nav-sidebar .nav-tab {
+  width: 100%;
+  justify-content: flex-start;
+  padding: 13px 16px;
+  font-size: 1rem;
+  border-radius: 10px;
+  gap: 12px;
+  background: var(--bg-muted);
+}
+.nav-sidebar .nav-tab:hover {
+  background: #ffffff;
+}
+.nav-sidebar .nav-tab.active {
+  background: #1b4332;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(27, 67, 50, 0.35);
+}
+
+.nav-sidebar-foot {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
 }
 
 .nav-tab {
@@ -1800,6 +1911,165 @@ main.container {
 .table-responsive {
   width: 100%;
   overflow-x: auto;
+}
+
+/* Mandi Data Table — airy, uncluttered */
+.table-wrapper {
+  max-height: 640px;
+  overflow: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.92rem;
+}
+
+.data-table th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #f8fafc;
+  padding: 15px 18px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 2px solid var(--border);
+  white-space: nowrap;
+}
+
+.data-table td {
+  padding: 17px 18px;
+  border-bottom: 1px solid #eef2f7;
+  color: var(--text-body);
+  vertical-align: middle;
+}
+
+.data-table tbody tr:nth-child(even) td {
+  background: #f8fafc;
+}
+
+.data-table tbody tr:hover td {
+  background: #f1f5f9;
+}
+
+.data-table th.num,
+.data-table td.num {
+  text-align: right;
+}
+
+.data-table td.num .spread-bar-wrap {
+  margin-left: auto;
+}
+
+.spread-range-text {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.78rem;
+}
+
+/* Mandi Modal Price Comparison Chart */
+.chart-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 20px 22px 12px;
+  margin-top: 20px;
+}
+
+.chart-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.chart-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.chart-sub {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.chart-canvas-wrap {
+  width: 100%;
+}
+
+#priceChart {
+  display: block;
+  max-width: 100%;
+}
+
+/* Voice row */
+.voice-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-voice {
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #047857;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+}
+
+.btn-voice:hover {
+  background: #25d366;
+  color: #ffffff;
+  border-color: #25d366;
+}
+
+/* Best Mandi For Your Crop card */
+.best-mandi-card {
+  background: #f0fdf4;
+  border: 1.5px solid #bbf7d0;
+  border-left: 6px solid #16a34a;
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.best-mandi-label {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #166534;
+}
+
+.best-mandi-value {
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: #1e293b;
+}
+
+.chart-footnote {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 6px;
 }
 
 table.price-table {

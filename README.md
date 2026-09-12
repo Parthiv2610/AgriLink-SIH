@@ -42,11 +42,7 @@ Real-time tracking of high-impact cash and staple crops:
 ## 🚀 How to Run
 
 ### Quick Start
-```bash
-cd "Prototype 2"
-./run.sh 8085
-```
-Or directly using Python (standard library, zero pip dependencies required):
+Using Python (standard library, zero pip dependencies required):
 ```bash
 python3 server.py 8085
 ```
@@ -55,17 +51,6 @@ Navigate in your web browser to:
 ```
 http://localhost:8085
 ```
-
----
-
-## 🧪 Verification & Testing
-
-To run the automated verification test suite:
-```bash
-python3 test_server.py
-```
-
-All 39+ mandi records, 5 translation dictionaries, and project assets will be validated.
 
 ---
 

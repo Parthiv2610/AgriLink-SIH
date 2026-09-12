@@ -1,0 +1,22 @@
+{
+  "note": "Discarded junk data removed from bidding_data.json. Re-import by merging back into the parent lot AUC-2026-001 bids/awarded_bid if needed.",
+  "parent_lot_id": "AUC-2026-001",
+  "discarded_junk_bid": {
+    "id": "BID-04",
+    "company_name": "swf",
+    "buyer_name": "wefwf",
+    "gstin": "36aaaasaqgfeqrgt4e",
+    "bid_price": 30000,
+    "total_amount": 12000000,
+    "timestamp": "2026-09-10T13:31:59.905299+00:00"
+  },
+  "discarded_junk_awarded_bid": {
+    "id": "BID-04",
+    "company_name": "swf",
+    "buyer_name": "wefwf",
+    "gstin": "36aaaasaqgfeqrgt4e",
+    "bid_price": 30000,
+    "total_amount": 12000000,
+    "awarded_at": "2026-09-10T13:32:04.405233+00:00"
+  }
+}

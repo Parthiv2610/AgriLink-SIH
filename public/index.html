@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Lora:ital,wght@0,600;1,600;1,700&family=Merriweather:ital,wght@0,700;1,700;1,900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=2">
   <link rel="icon" href="images/agrilink_logo.jpg" type="image/jpeg">
 </head>
 <body>
@@ -52,6 +52,9 @@
   <!-- Main Header -->
   <header class="app-header">
     <div class="header-main">
+      <!-- Sidebar Menu Toggle (top-left) -->
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" title="Menu">☰</button>
+
       <div class="branding-group" id="brandHomeClick">
         <div class="brand-logos">
           <img src="images/agrilink_logo.jpg" alt="AgriLink Logo" class="logo-img logo-main">
@@ -63,25 +66,6 @@
           <p data-i18n="app_subtitle">Government of India Agricultural Market Price Portal</p>
         </div>
       </div>
-
-      <!-- Navigation Tabs: Dedicated Portals -->
-      <nav class="nav-tab-bar">
-        <button class="nav-tab active" data-view="home">
-          <span>🏠</span> <span data-i18n="nav_home">Home</span>
-        </button>
-        <button class="nav-tab nav-tab-farmer" data-view="farmer">
-          <span>👨‍🌾</span> <span data-i18n="nav_farmer_portal">Farmer Portal</span>
-        </button>
-        <button class="nav-tab nav-tab-fpo" data-view="fpo">
-          <span>🌾</span> <span data-i18n="nav_fpo_portal">FPO Portal</span>
-        </button>
-        <button class="nav-tab nav-tab-corporate" data-view="corporate">
-          <span>🏢</span> <span data-i18n="nav_corporate_portal">Corporate Portal</span>
-        </button>
-        <button class="nav-tab nav-tab-callback" data-view="callback">
-          <span>📞</span> <span data-i18n="nav_callback">Voice Call Back</span>
-        </button>
-      </nav>
 
       <div class="header-actions">
         <!-- 6-Language Selector -->
@@ -135,14 +119,14 @@
             <h1 class="visually-hidden">AgriLink</h1>
           </div>
 
-          <div class="hero-actions center-actions" style="margin-top: 28px;">
+          <div class="hero-actions center-actions mt-7">
             <button class="btn-hero-primary" id="btnHeroExplore">
               <span>📊</span> <span data-i18n="btn_explore_prices">Explore Live Mandi Prices</span>
             </button>
             <button class="btn-hero-secondary" id="btnHeroCalc">
               <span>🧮</span> <span data-i18n="btn_open_calculator">Calculate Crop Earnings</span>
             </button>
-            <button class="btn-hero-callback" id="btnHeroCallback" onclick="switchView('callback')">
+            <button class="btn-hero-callback" id="btnHeroCallback" onclick="switchView('farmer')">
               <span>📞</span> <span data-i18n="btn_hero_callback">Request Voice Call Back</span>
             </button>
           </div>
@@ -150,7 +134,7 @@
           <!-- Scroll Down to Features Anchor -->
           <div class="entry-scroll-prompt">
             <a href="#mainFeaturesSection" class="btn-scroll-features" id="btnScrollFeatures">
-              <span class="scroll-label" data-i18n="scroll_down_features">Scroll Down to Explore AgriLink Features</span>
+              <span class="scroll-label" data-i18n="scroll_down_features">Explore Features</span>
               <span class="scroll-bounce-arrow">⬇️</span>
             </a>
           </div>
@@ -160,50 +144,12 @@
       <!-- Main Features Container (Scroll Target) -->
       <div id="mainFeaturesSection" class="main-features-anchor-wrap">
 
-        <!-- Celebrate Farmers Tribute Card featuring Sunset Farmer showering grains -->
-        <div class="celebrate-farmers-tribute-card">
-          <div class="tribute-photo-col" style="background-image: url('images/farmer_golden_harvest.jpg');">
-            <div class="tribute-photo-overlay"></div>
-            <span class="tribute-photo-badge">🌾 Jai Kisan • #celebrate farming</span>
-          </div>
-          <div class="tribute-content-col">
-            <div class="badge-tag tag-success" style="display:inline-block; margin-bottom:8px;">🇮🇳 Dedicated to the Indian Cultivator</div>
-            <h2 class="tribute-title">Honoring the Hands That Feed Our Nation</h2>
-            <p class="tribute-desc">
-              Behind every golden grain lies tireless devotion, battling unpredictable weather and toiling under the scorching sun. <strong>AgriLink</strong> proudly celebrates our farmers by eliminating the 10.0% median middleman deductions, equipping every cultivator with direct government wholesale Agmarknet rates, regional voice broadcasts, and collective auction power.
-            </p>
-            <div class="tribute-highlights-grid">
-              <div class="tribute-stat-item">
-                <span class="tstat-icon">💰</span>
-                <div>
-                  <strong>100% Direct Value</strong>
-                  <small>Zero middleman cuts deducted</small>
-                </div>
-              </div>
-              <div class="tribute-stat-item">
-                <span class="tstat-icon">🗣️</span>
-                <div>
-                  <strong>Mother-Tongue Voice</strong>
-                  <small>Regional readouts in 6 languages</small>
-                </div>
-              </div>
-              <div class="tribute-stat-item">
-                <span class="tstat-icon">🏛️</span>
-                <div>
-                  <strong>Official GoI Agmarknet</strong>
-                  <small>Direct APMC wholesale benchmarks</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
       <!-- 3 Dedicated User Portals Gateway -->
-      <div class="home-section-header" style="margin-top: 32px;">
-        <div class="badge-tag tag-primary" style="display:inline-block; margin-bottom:8px;">🎯 Role-Based Access</div>
+      <div class="home-section-header section-top-gap">
+        <div class="badge-tag tag-primary inline-block mb-2">Role-Based Access</div>
         <h2 class="home-section-title" data-i18n="portals_heading">Choose Your Dedicated Agricultural Portal</h2>
         <p class="home-section-subtitle" data-i18n="portals_subheading">
-          Dedicated, focused environments designed specifically for individual cultivators, farmer producer collectives (FPOs), and corporate institutional buyers.
+          One dedicated portal for farmers, FPOs, and corporate buyers.
         </p>
       </div>
 
@@ -211,20 +157,17 @@
         <!-- Portal 1: Farmer Gateway -->
         <div class="portal-gate-card gate-farmer" onclick="switchView('farmer')">
           <div class="gate-card-photo" style="background-image: url('images/farmer_paddy_lookout.jpg');">
-            <span class="gate-photo-caption">👨‍🌾 Individual Cultivators</span>
           </div>
           <div class="gate-content-wrap">
-            <div class="gate-icon-wrap">👨‍🌾</div>
-            <span class="gate-badge">For Individual Cultivators</span>
             <h3 class="gate-title" data-i18n="portal_farmer_title">Farmer Portal</h3>
-            <p class="gate-desc" data-i18n="portal_farmer_desc">Check daily APMC mandi wholesale rates, listen to regional voice announcements, and calculate your exact net harvest realization.</p>
+            <p class="gate-desc" data-i18n="portal_farmer_desc">Daily APMC rates, voice readouts, and your exact harvest value.</p>
             <ul class="gate-features-list">
-              <li>✓ Official APMC Daily Wholesale Rates</li>
-              <li>✓ Regional Mother-Tongue Audio Voice Readout</li>
-              <li>✓ Harvest Realization Calculator (Quintal / KG / Bag)</li>
+              <li>Official APMC Daily Rates</li>
+              <li>Voice Readout in Your Language</li>
+              <li>Realization Calculator (Qtl/Kg/Bag)</li>
             </ul>
             <button class="btn-gate-enter btn-enter-farmer">
-              <span data-i18n="btn_enter_farmer">Enter Farmer Portal ➔</span>
+              <span data-i18n="btn_enter_farmer">Enter Farmer Portal</span>
             </button>
           </div>
         </div>
@@ -232,20 +175,17 @@
         <!-- Portal 2: FPO Gateway -->
         <div class="portal-gate-card gate-fpo" onclick="switchView('fpo')">
           <div class="gate-card-photo" style="background-image: url('images/tractor_bull_plow.jpg');">
-            <span class="gate-photo-caption">🌾 Producer Collectives</span>
           </div>
           <div class="gate-content-wrap">
-            <div class="gate-icon-wrap">🌾</div>
-            <span class="gate-badge">For Producer Collectives</span>
             <h3 class="gate-title" data-i18n="portal_fpo_title">FPO Portal</h3>
-            <p class="gate-desc" data-i18n="portal_fpo_desc">Aggregate member harvests, host bulk produce lots with minimum reserve prices, and award direct contracts to the highest corporate bidder.</p>
+            <p class="gate-desc" data-i18n="portal_fpo_desc">Host bulk lots with reserve prices and award direct contracts.</p>
             <ul class="gate-features-list">
-              <li>✓ Collective Bulk Produce Lot Hosting</li>
-              <li>✓ Guaranteed Minimum Base Price Setting</li>
-              <li>✓ "Award Highest Bidder" Auction Resolution</li>
+              <li>Bulk Produce Lot Hosting</li>
+              <li>Minimum Reserve Price</li>
+              <li>Award Highest Bidder</li>
             </ul>
             <button class="btn-gate-enter btn-enter-fpo">
-              <span data-i18n="btn_enter_fpo">Enter FPO Portal ➔</span>
+              <span data-i18n="btn_enter_fpo">Enter FPO Portal</span>
             </button>
           </div>
         </div>
@@ -253,41 +193,35 @@
         <!-- Portal 3: Corporate Gateway -->
         <div class="portal-gate-card gate-corporate" onclick="switchView('corporate')">
           <div class="gate-card-photo" style="background-image: url('images/farmer_sowing_field.jpg');">
-            <span class="gate-photo-caption">🏢 Corporate Sourcing</span>
           </div>
           <div class="gate-content-wrap">
-            <div class="gate-icon-wrap">🏢</div>
-            <span class="gate-badge">For Enterprise Agribusinesses</span>
             <h3 class="gate-title" data-i18n="portal_corporate_title">Corporate Portal</h3>
-            <p class="gate-desc" data-i18n="portal_corporate_desc">Procure farm-direct bulk lots at scale. Participate in confidential sealed blind bidding and secure zero-middleman institutional supply.</p>
+            <p class="gate-desc" data-i18n="portal_corporate_desc">Source farm-direct bulk lots via sealed blind bidding.</p>
             <ul class="gate-features-list">
-              <li>✓ Pan-India FPO Bulk Sourcing Marketplace</li>
-              <li>✓ Confidential Sealed Blind Bidding Terminal</li>
-              <li>✓ Direct Dispatch Contracts & Delivery Tracking</li>
+              <li>Pan-India FPO Sourcing</li>
+              <li>Sealed Blind Bidding</li>
+              <li>Direct Dispatch Contracts</li>
             </ul>
             <button class="btn-gate-enter btn-enter-corporate">
-              <span data-i18n="btn_enter_corporate">Enter Corporate Portal ➔</span>
+              <span data-i18n="btn_enter_corporate">Enter Corporate Portal</span>
             </button>
           </div>
         </div>
 
         <!-- Portal 4: Voice Call Back Gateway -->
-        <div class="portal-gate-card gate-callback" onclick="switchView('callback')">
+        <div class="portal-gate-card gate-callback" onclick="switchView('farmer')">
           <div class="gate-card-photo" style="background-image: url('images/farmer_portrait_hoe.jpg');">
-            <span class="gate-photo-caption">📞 Voice Guidance</span>
           </div>
           <div class="gate-content-wrap">
-            <div class="gate-icon-wrap">📞</div>
-            <span class="gate-badge badge-callback">For Illiterate Farmers</span>
             <h3 class="gate-title" data-i18n="nav_callback">Voice Call Back</h3>
-            <p class="gate-desc">Free phone guidance for farmers who cannot read or write. Get an instant call from Krishi Mitra in your mother tongue.</p>
+            <p class="gate-desc">Free phone guidance in your mother tongue for farmers who can't read or write.</p>
             <ul class="gate-features-list">
-              <li>✓ 1-Click Instant Telephone Call Back</li>
-              <li>✓ 6 Indian Regional Languages Supported</li>
-              <li>✓ 24x7 Toll-Free Voice Helpline</li>
+              <li>1-Click Call Back</li>
+              <li>6 Regional Languages</li>
+              <li>24x7 Toll-Free Helpline</li>
             </ul>
             <button class="btn-gate-enter btn-enter-callback">
-              <span>Request Voice Call Back ➔</span>
+              <span>Request Voice Call Back</span>
             </button>
           </div>
         </div>
@@ -296,7 +230,7 @@
       <!-- Featured Crops Showcase -->
       <div class="home-section-header">
         <h2 class="home-section-title" data-i18n="featured_crops_title">High-Impact Focus Commodities</h2>
-        <p class="home-section-subtitle" data-i18n="featured_crops_subtitle">Daily official modal benchmark prices across major Indian agricultural trading hubs</p>
+        <p class="home-section-subtitle" data-i18n="featured_crops_subtitle">Daily official modal prices at major trading hubs</p>
       </div>
 
       <div class="featured-crops-grid">
@@ -422,7 +356,7 @@
           <div class="pillar-icon">🏛️</div>
           <h3 class="pillar-title" data-i18n="feature_gov_title">Govt of India Verified</h3>
           <p class="pillar-desc" data-i18n="feature_gov_desc">
-            Direct integration with Agmarknet & data.gov.in official REST API with zero middleman distortion.
+            Official Agmarknet & data.gov.in integration.
           </p>
         </div>
 
@@ -430,7 +364,7 @@
           <div class="pillar-icon">🗣️</div>
           <h3 class="pillar-title" data-i18n="feature_lang_title">100% In Your Language</h3>
           <p class="pillar-desc" data-i18n="feature_lang_desc">
-            Complete interface available in Telugu, Marathi, English, Punjabi, and Hindi with regional voice readout.
+            Full interface in 6 Indian languages with voice readout.
           </p>
         </div>
 
@@ -438,7 +372,7 @@
           <div class="pillar-icon">⚖️</div>
           <h3 class="pillar-title" data-i18n="feature_calc_title">Fair Realization Calculator</h3>
           <p class="pillar-desc" data-i18n="feature_calc_desc">
-            Convert quintals, kg, and bags into direct farmgate value at prevailing official modal rates.
+            Instant farmgate value from official modal rates.
           </p>
         </div>
 
@@ -446,10 +380,48 @@
           <div class="pillar-icon">📈</div>
           <h3 class="pillar-title" data-i18n="feature_fair_title">Multi-State Intelligence</h3>
           <p class="pillar-desc" data-i18n="feature_fair_desc">
-            Compare wholesale prices across Telangana, AP, Maharashtra, Punjab, Haryana, MP, and Karnataka.
+            Compare wholesale prices across 7+ states.
           </p>
         </div>
       </div>
+
+        <!-- Celebrate Farmers Tribute Card (moved to bottom of home page) -->
+        <div class="celebrate-farmers-tribute-card mt-10">
+          <div class="tribute-photo-col" style="background-image: url('images/farmer_golden_harvest.jpg');">
+            <div class="tribute-photo-overlay"></div>
+            <span class="tribute-photo-badge">🌾 Jai Kisan • #celebrate farming</span>
+          </div>
+          <div class="tribute-content-col">
+            <div class="badge-tag tag-success inline-block mb-2">Dedicated to the Indian Cultivator</div>
+            <h2 class="tribute-title">Honoring the Hands That Feed Our Nation</h2>
+            <p class="tribute-desc">
+              AgriLink gives every cultivator direct GoI mandi rates, regional voice readout, and collective auction power — with zero middleman cuts.
+            </p>
+            <div class="tribute-highlights-grid">
+              <div class="tribute-stat-item">
+                <span class="tstat-icon">💰</span>
+                <div>
+                  <strong>100% Direct Value</strong>
+                  <small>Zero middleman cuts deducted</small>
+                </div>
+              </div>
+              <div class="tribute-stat-item">
+                <span class="tstat-icon">🗣️</span>
+                <div>
+                  <strong>Mother-Tongue Voice</strong>
+                  <small>Regional readouts in 6 languages</small>
+                </div>
+              </div>
+              <div class="tribute-stat-item">
+                <span class="tstat-icon">🏛️</span>
+                <div>
+                  <strong>Official GoI Agmarknet</strong>
+                  <small>Direct APMC wholesale benchmarks</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
 
     </section>
@@ -461,9 +433,7 @@
       <!-- Portal Header Banner with Farmer Lookout Photo Background -->
       <div class="portal-header-card theme-farmer" style="background-image: url('images/farmer_paddy_lookout.jpg');">
         <div class="portal-badge-row">
-          <span class="badge-tag tag-success">👨‍🌾 Individual Cultivator Portal</span>
-          <span class="badge-tag tag-primary">🏛️ Official APMC Wholesale Prices</span>
-          <span class="badge-tag tag-accent">🗣️ Regional Voice Announcements</span>
+          <span class="portal-subject-pill">Farmer Portal</span>
         </div>
         <h2 class="portal-heading" data-i18n="portal_farmer_title">Farmer Price Intelligence & Earnings Calculator</h2>
         <p class="portal-subtext" data-i18n="portal_farmer_desc">
@@ -474,14 +444,20 @@
       <!-- Quick Crop Selection Pill Bar -->
       <div class="crop-pill-bar">
         <span class="crop-pill-label" data-i18n="filter_by_crop">Quick Select Crop:</span>
-        <div id="cropPillsContainer" style="display:inline-flex; gap:10px;">
+        <div id="cropPillsContainer" class="pill-row-inline">
           <!-- Dynamically populated -->
         </div>
       </div>
 
+      <!-- Best Mandi For Your Crop Card -->
+      <div class="best-mandi-card" id="bestMandiCard">
+        <span class="best-mandi-label" data-i18n="best_mandi_title">Best Mandi For Your Crop Today</span>
+        <span class="best-mandi-value" id="bestMandiValue">—</span>
+      </div>
+
       <!-- Filters Section -->
       <div class="filters-card">
-        <h2 style="font-size: 1.05rem; font-weight: 700; color: var(--text-dark);" data-i18n="filters_heading">Search & Mandi Filters</h2>
+        <h2 class="filters-heading" data-i18n="filters_heading">Search & Mandi Filters</h2>
         <div class="filters-grid">
           <div class="form-group">
             <label class="form-label" data-i18n="search_placeholder">Search</label>
@@ -524,9 +500,21 @@
             <span>↺</span> <span data-i18n="reset_filters">Reset Filters</span>
           </button>
           <button class="btn-primary" id="btnExport">
-            <span>📥</span> <span data-i18n="export_csv">Export CSV</span>
+            <span data-i18n="export_csv">Export CSV</span>
           </button>
         </div>
+      </div>
+
+      <!-- Mandi Modal Price Comparison Chart -->
+      <div class="chart-card">
+        <div class="chart-card-head">
+          <h3 class="chart-title" data-i18n="chart_title">Mandi Modal Price Comparison</h3>
+          <span class="chart-sub" id="chartSubtitle"></span>
+        </div>
+        <div class="chart-canvas-wrap">
+          <canvas id="priceChart" height="280"></canvas>
+        </div>
+        <p class="chart-footnote" data-i18n="chart_footnote">Official modal price (₹/quintal) per reporting mandi</p>
       </div>
 
       <!-- Mandi Prices Data Table -->
@@ -536,8 +524,8 @@
             <h3 data-i18n="nav_prices">Live Government Mandi Wholesale Rates</h3>
             <span class="records-count-badge" id="recordsCountText">Loading mandi records...</span>
           </div>
-          <div style="font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px;">
-            <span>🟢</span> <span data-i18n="last_updated">Last Updated: 10 September 2026</span>
+          <div class="last-updated-row">
+            <span class="live-dot"></span> <span data-i18n="last_updated">Last Updated: 10 September 2026</span>
           </div>
         </div>
 
@@ -550,11 +538,8 @@
                 <th data-i18n="th_mandi">Mandi Market</th>
                 <th data-i18n="th_variety">Variety</th>
                 <th data-i18n="th_date">Arrival Date</th>
-                <th data-i18n="th_min_price">Min Price (₹/q)</th>
-                <th data-i18n="th_max_price">Max Price (₹/q)</th>
-                <th data-i18n="th_modal_price" style="color: var(--primary);">Modal Price (₹/q)</th>
-                <th data-i18n="th_unit_price">Price (₹/Kg)</th>
-                <th data-i18n="th_spread">Spread</th>
+                <th data-i18n="th_modal_price" class="num th-modal-price">Modal Price (₹/q)</th>
+                <th data-i18n="th_unit_price" class="num">Price (₹/Kg)</th>
                 <th data-i18n="th_action">Audio Voice</th>
               </tr>
             </thead>
@@ -566,9 +551,9 @@
       </div>
 
       <!-- Embedded Farmer Harvest Earnings & Middlemen Cost Calculator -->
-      <div class="calculator-panel" style="margin-top: 28px;">
+      <div class="calculator-panel mt-7">
         <div class="home-section-header">
-          <div class="badge-tag tag-success" style="display:inline-block; margin-bottom:6px;">🧮 <span data-i18n="calc_tool_badge">Farmer Realization & Middleman Loss Calculator</span></div>
+          <div class="badge-tag tag-success inline-block mb-1-5"><span data-i18n="calc_tool_badge">Farmer Realization & Middleman Loss Calculator</span></div>
           <h2 class="home-section-title" data-i18n="calc_title">Farmer Earnings & Market-Cost Calculator</h2>
           <p class="home-section-subtitle" data-i18n="calc_desc">Calculate your true harvest realization and see exactly how much is deducted by traditional middlemen commissions versus direct fair marketing.</p>
         </div>
@@ -582,7 +567,7 @@
               </select>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div class="grid-2col-gap-14">
               <div class="form-group">
                 <label class="form-label" data-i18n="calc_weight">Enter Quantity</label>
                 <input type="number" class="form-input" id="calcQuantity" value="25" min="1" step="0.5">
@@ -601,7 +586,7 @@
             <!-- Middleman & Market-Cost Commission Configuration (Median Default) -->
             <div class="calc-commission-box">
               <div class="commission-box-header">
-                <span class="commission-box-title" data-i18n="calc_middleman_header">⚖️ Middleman & Market Cost Commissions</span>
+                <span class="commission-box-title" data-i18n="calc_middleman_header">Middleman & Market Cost Commissions</span>
                 <span class="badge-tag tag-accent" id="calcCommissionBadge">Median APMC Cost: 10.0%</span>
               </div>
               
@@ -636,7 +621,7 @@
                 </div>
                 <div class="comm-item comm-total-row">
                   <strong data-i18n="comm_total_deduction">Total Middleman & Market Cost Loss</strong>
-                  <strong id="calcTotalDeductionVal" style="color:#dc2626;">-₹0</strong>
+                  <strong id="calcTotalDeductionVal" class="text-red-strong">-₹0</strong>
                 </div>
               </div>
             </div>
@@ -662,7 +647,7 @@
             <!-- AgriLink Fair Direct Realization Card -->
             <div class="calc-route-card agrilink-route">
               <div class="route-header">
-                <span class="route-icon">🟢</span>
+                <span class="route-icon"></span>
                 <div>
                   <h4 data-i18n="agrilink_route_title">AgriLink Direct Fair Realization</h4>
                   <span class="route-subtitle" data-i18n="agrilink_route_subtitle">100% full official government modal benchmark</span>
@@ -671,9 +656,9 @@
               <div class="route-payout text-green" id="calcTotalVal">₹0</div>
               <div class="calc-result-rate" id="calcAppliedRate">-</div>
               <div class="route-gain-pill" id="calcFarmerSavingsPill">
-                🎉 <span data-i18n="farmer_savings_label">Extra retained in farmer's pocket:</span> <strong id="calcSavingsVal">+₹0</strong>
+                <span data-i18n="farmer_savings_label">Extra retained in farmer's pocket:</span> <strong id="calcSavingsVal">+₹0</strong>
               </div>
-              <small style="color: #166534; font-size: 0.8rem; margin-top: 8px; display: block;" data-i18n="calc_net_note">
+              <small class="calc-note-green" data-i18n="calc_net_note">
                 Direct farm-gate benchmark without commission cuts
               </small>
             </div>
@@ -683,10 +668,10 @@
         <!-- Farmer Advocacy & Sweat-Value Card featuring smiling farmer photo -->
         <div class="calc-farmer-advocate-card">
           <div class="farmer-advocate-img-col" style="background-image: url('images/farmer_portrait_hoe.jpg');">
-            <span class="farmer-advocate-tag">🇮🇳 Annadata First</span>
+            <span class="farmer-advocate-tag">Annadata First</span>
           </div>
           <div class="farmer-advocate-body">
-            <div class="badge-tag tag-success" style="display:inline-block; margin-bottom: 6px;">🌱 100% Direct APMC Mandi Benchmark</div>
+            <div class="badge-tag tag-success inline-block mb-1-5">100% Direct APMC Mandi Benchmark</div>
             <h4 class="farmer-advocate-title">Protecting Every Rupee of Your Hard-Earned Sweat</h4>
             <p class="farmer-advocate-desc">Unregulated commission agents and market intermediaries shave off an estimated <strong>10.0% median deductions</strong> from every quintal. AgriLink empowers cultivators with instant transparent wholesale benchmarks to protect your rightful harvest income.</p>
           </div>
@@ -696,7 +681,7 @@
       <!-- Bottom Section: Agricultural Field Highlights & Canopy Photo Gallery -->
       <div class="bottom-canopy-info-section" id="bottomCanopySection">
         <div class="home-section-header">
-          <div class="badge-tag tag-primary" style="display:inline-block; margin-bottom: 6px;">🌾 Field Imagery & Agmarknet Canopy</div>
+          <div class="badge-tag tag-primary inline-block mb-1-5">Field Imagery & Agmarknet Canopy</div>
           <h2 class="home-section-title">Agricultural Highlights & Field Canopy</h2>
           <p class="home-section-subtitle">Real-time agricultural coverage, verified mandi intelligence, and authentic field photography across India's heartland.</p>
         </div>
@@ -719,7 +704,7 @@
             <span>🌱</span> <span data-i18n="photo_tag_4">Farmgate Sowing</span>
           </div>
           <div class="hero-slide-badge" data-slide="5">
-            <span>🇮🇳</span> <span data-i18n="photo_tag_5">Farmer Fair Realization</span>
+            <span></span> <span data-i18n="photo_tag_5">Farmer Fair Realization</span>
           </div>
         </div>
 
@@ -742,6 +727,106 @@
           </div>
         </div>
       </div>
+
+      <!-- Voice Call Back (Embedded at bottom of Farmer Dashboard, below crop prices & calculator) -->
+      <div class="home-section-header section-top-gap-9">
+        <div class="badge-tag tag-success inline-block mb-1-5"><span data-i18n="nav_callback">Voice Call Back</span></div>
+        <h2 class="home-section-title" data-i18n="callback_main_heading">Farmer Voice Call Back & Assisted Website Portal</h2>
+        <p class="home-section-subtitle" data-i18n="callback_subtext">
+          Can't read or write? Don't worry! Enter your mobile number below or dial our toll-free helpline. Our AgriLink Krishi Mitra will call you in 2 minutes and guide you step-by-step in your mother tongue.
+        </p>
+      </div>
+
+      <div class="callback-tab-card mt-4">
+        <div class="callback-card-hero-row">
+          <div class="callback-icon-circle">
+            <span class="phone-pulse-icon">📞</span>
+          </div>
+          <div>
+            <div class="callback-badge-pill mb-1-5">
+              <span></span>
+              <span data-i18n="callback_badge_tag">Free Voice Assistance for Every Farmer • చదువురాని అన్నదాతల సహాయ కేంద్రం</span>
+            </div>
+            <h3 class="callback-hero-title">Request an Instant Voice Guidance Call Back</h3>
+            <p class="callback-hero-desc">No reading or writing required. An assistant speaks directly to you on your mobile phone.</p>
+          </div>
+        </div>
+
+        <form class="callback-tab-form" id="farmerCallbackForm" onsubmit="event.preventDefault(); requestFarmerCallback();" style="margin-top: 24px;">
+          <div class="callback-tab-form-grid">
+            <div class="form-group">
+              <label class="form-label form-label-bold">Your 10-Digit Mobile Number *</label>
+              <div class="callback-input-group input-full-width">
+                <span class="input-country-code">🇮🇳 +91</span>
+                <input type="tel" id="farmerPhoneInput" class="callback-tel-input input-full-width" placeholder="Enter 10-Digit Mobile Number" maxlength="10" pattern="[0-9]{10}" required data-i18n-placeholder="placeholder_phone">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label form-label-bold">Select Preferred Mother Tongue *</label>
+              <select id="farmerLangSelect" class="callback-select callback-select-clean">
+                <option value="te">Telugu (తెలుగు - ఆంధ్ర / తెలంగాణ)</option>
+                <option value="hi">Hindi (हिंदी)</option>
+                <option value="ta">Tamil (தமிழ்)</option>
+                <option value="mr">Marathi (मराठी)</option>
+                <option value="pa">Punjabi (ਪੰਜਾਬੀ)</option>
+                <option value="en">English</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="callback-btn-row mt-4">
+            <button type="submit" class="btn-request-call btn-request-call-large" id="btnRequestCallback">
+              <span>📲</span> <span data-i18n="btn_request_callback">Request Call Back Now</span>
+            </button>
+
+            <button type="button" class="btn-listen-audio btn-listen-audio-clean" id="btnListenAudioGuide" onclick="speakAudioCallbackGuide()" title="Click to hear spoken explanation in your language">
+              <span>🔊</span> <span data-i18n="btn_listen_guide">Hear in Voice (వినండి)</span>
+            </button>
+          </div>
+
+          <!-- Toast Alert Container for Confirmation -->
+          <div id="callbackToast" class="callback-toast" style="display: none; margin-top: 18px;"></div>
+        </form>
+
+        <!-- Direct Toll-Free Helpline Banner -->
+        <div class="tollfree-spotlight-box mt-6">
+          <div class="tf-icon">☎️</div>
+          <div class="tf-body">
+            <h4 class="tollfree-heading"><span data-i18n="label_toll_free">Toll-Free Voice Helpline:</span> <a href="tel:18002474546" class="tollfree-num">1800-AGRI-LINK (1800-247-4546)</a></h4>
+            <p class="tollfree-desc">Available 24x7 from any mobile or landline across India. Zero balance needed.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Simple 3-Step Illustrated Guide for Illiterate Farmers -->
+      <div class="callback-steps-container">
+        <h3 class="callback-steps-heading">
+          How Voice Call Back Works (ఎలా పనిచేస్తుంది)
+        </h3>
+        <div class="callback-steps-grid">
+          <div class="callback-step-card">
+            <div class="cstep-num">1️⃣</div>
+            <div class="cstep-icon">📱</div>
+            <h4>Enter Mobile Number</h4>
+            <p>Type your 10-digit phone number above or dial our toll-free number from any mobile or keypad phone.</p>
+          </div>
+
+          <div class="callback-step-card">
+            <div class="cstep-num">2️⃣</div>
+            <div class="cstep-icon">📞</div>
+            <h4>Receive Call in 2 Minutes</h4>
+            <p>Our automated Krishi Mitra connects to your phone in your selected regional mother tongue.</p>
+          </div>
+
+          <div class="callback-step-card">
+            <div class="cstep-num">3️⃣</div>
+            <div class="cstep-icon">🗣️</div>
+            <h4>Listen to Mandi Prices</h4>
+            <p>Tell the assistant your crop and nearest market. You will hear the live wholesale rates spoken aloud.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ============================================================ -->
@@ -751,9 +836,7 @@
       <!-- FPO Header Banner with Tractor & Bull Plowing Background -->
       <div class="portal-header-card theme-fpo" style="background-image: url('images/tractor_bull_plow.jpg');">
         <div class="portal-badge-row">
-          <span class="badge-tag tag-primary">🌾 Producer Collective Command</span>
-          <span class="badge-tag tag-success">📦 Collective Bulk Produce Aggregation</span>
-          <span class="badge-tag tag-accent">🏆 "Award Highest Bidder" Engine</span>
+          <span class="portal-subject-pill">FPO Portal</span>
         </div>
         <div class="bidding-headline-wrap">
           <div>
@@ -858,9 +941,7 @@
       <!-- Corporate Header Banner with Farmer Sowing Field Background -->
       <div class="portal-header-card theme-corporate" style="background-image: url('images/farmer_sowing_field.jpg');">
         <div class="portal-badge-row">
-          <span class="badge-tag tag-accent">🏢 Institutional Procurement</span>
-          <span class="badge-tag tag-primary">🔒 Sealed Blind Bidding Terminal</span>
-          <span class="badge-tag tag-success">📜 Direct Farm Sourcing Contracts</span>
+          <span class="portal-subject-pill">Corporate Portal</span>
         </div>
         <h2 class="portal-heading" data-i18n="portal_corporate_title">Corporate Bulk Procurement & Sealed Bidding Terminal</h2>
         <p class="portal-subtext" data-i18n="portal_corporate_desc">
@@ -936,120 +1017,6 @@
       </div>
     </section>
 
-    <!-- ============================================================ -->
-    <!-- TAB / PORTAL 4: VOICE CALL BACK FOR ILLITERATE FARMERS       -->
-    <!-- ============================================================ -->
-    <section id="view-callback" class="page-view hidden">
-      <!-- Portal Header Banner with Farmer Portrait Background -->
-      <div class="portal-header-card theme-callback" style="background-image: url('images/farmer_portrait_hoe.jpg');">
-        <div class="portal-badge-row">
-          <span class="badge-tag tag-success">📞 Free Telephone Voice Guidance</span>
-          <span class="badge-tag tag-primary">🗣️ 6 Regional Indian Languages</span>
-          <span class="badge-tag tag-accent">🟢 2-Minute Response Guaranteed</span>
-        </div>
-        <div class="bidding-headline-wrap">
-          <div>
-            <h2 class="portal-heading" data-i18n="callback_main_heading">Farmer Voice Call Back & Assisted Website Portal</h2>
-            <p class="portal-subtext" data-i18n="callback_subtext">
-              Can't read or write? Don't worry! Enter your mobile number below or dial our toll-free helpline. Our AgriLink Krishi Mitra will call you in 2 minutes and guide you step-by-step in your mother tongue.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Main Illiterate Farmer Voice Assistance Form Card -->
-      <div class="callback-tab-card">
-        <div class="callback-card-hero-row">
-          <div class="callback-icon-circle">
-            <span class="phone-pulse-icon">📞</span>
-          </div>
-          <div>
-            <div class="callback-badge-pill" style="margin-bottom: 6px;">
-              <span>🎙️</span>
-              <span data-i18n="callback_badge_tag">Free Voice Assistance for Every Farmer • చదువురాని అన్నదాతల సహాయ కేంద్రం</span>
-            </div>
-            <h3 style="font-size: 1.55rem; font-weight: 800; color: #0f172a; margin: 0 0 6px 0;">Request an Instant Voice Guidance Call Back</h3>
-            <p style="font-size: 0.94rem; color: #475569; margin: 0;">No reading or writing required. An assistant speaks directly to you on your mobile phone.</p>
-          </div>
-        </div>
-
-        <form class="callback-tab-form" id="farmerCallbackForm" onsubmit="event.preventDefault(); requestFarmerCallback();" style="margin-top: 24px;">
-          <div class="callback-tab-form-grid">
-            <div class="form-group">
-              <label class="form-label" style="font-weight: 700;">📱 Your 10-Digit Mobile Number *</label>
-              <div class="callback-input-group" style="width: 100%;">
-                <span class="input-country-code">🇮🇳 +91</span>
-                <input type="tel" id="farmerPhoneInput" class="callback-tel-input" style="width: 100%;" placeholder="Enter 10-Digit Mobile Number" maxlength="10" pattern="[0-9]{10}" required data-i18n-placeholder="placeholder_phone">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" style="font-weight: 700;">🗣️ Select Preferred Mother Tongue *</label>
-              <select id="farmerLangSelect" class="callback-select" style="width: 100%; height: 48px; background: #ffffff; color: #0f172a; border: 2px solid #cbd5e1;">
-                <option value="te">🗣️ Telugu (తెలుగు - ఆంధ్ర / తెలంగాణ)</option>
-                <option value="hi">🗣️ Hindi (हिंदी)</option>
-                <option value="ta">🗣️ Tamil (தமிழ்)</option>
-                <option value="mr">🗣️ Marathi (मराठी)</option>
-                <option value="pa">🗣️ Punjabi (ਪੰਜਾਬੀ)</option>
-                <option value="en">🗣️ English</option>
-              </select>
-            </div>
-          </div>
-
-          <div style="display: flex; gap: 14px; flex-wrap: wrap; margin-top: 16px;">
-            <button type="submit" class="btn-request-call" id="btnRequestCallback" style="flex: 1; min-width: 220px; justify-content: center; height: 52px; font-size: 1.05rem;">
-              <span>📲</span> <span data-i18n="btn_request_callback">Request Call Back Now</span>
-            </button>
-
-            <button type="button" class="btn-listen-audio" id="btnListenAudioGuide" onclick="speakAudioCallbackGuide()" style="height: 52px; font-size: 0.96rem; background: #fef3c7; color: #92400e; border: 1.5px solid #f59e0b;" title="Click to hear spoken explanation in your language">
-              <span>🔊</span> <span data-i18n="btn_listen_guide">Hear in Voice (వినండి)</span>
-            </button>
-          </div>
-
-          <!-- Toast Alert Container for Confirmation -->
-          <div id="callbackToast" class="callback-toast" style="display: none; margin-top: 18px;"></div>
-        </form>
-
-        <!-- Direct Toll-Free Helpline Banner -->
-        <div class="tollfree-spotlight-box" style="margin-top: 24px;">
-          <div class="tf-icon">☎️</div>
-          <div class="tf-body">
-            <h4 style="margin: 0 0 4px 0; font-size: 1.15rem; color: #064e3b;"><span data-i18n="label_toll_free">Toll-Free Voice Helpline:</span> <a href="tel:18002474546" class="tollfree-num">1800-AGRI-LINK (1800-247-4546)</a></h4>
-            <p style="margin: 0; font-size: 0.88rem; color: #334155;">Available 24x7 from any mobile or landline across India. Zero balance needed.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Simple 3-Step Illustrated Guide for Illiterate Farmers -->
-      <div class="callback-steps-container">
-        <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-dark); text-align: center; margin-bottom: 20px;">
-          How Voice Call Back Works (ఎలా పనిచేస్తుంది)
-        </h3>
-        <div class="callback-steps-grid">
-          <div class="callback-step-card">
-            <div class="cstep-num">1️⃣</div>
-            <div class="cstep-icon">📱</div>
-            <h4>Enter Mobile Number</h4>
-            <p>Type your 10-digit phone number above or dial our toll-free number from any mobile or keypad phone.</p>
-          </div>
-
-          <div class="callback-step-card">
-            <div class="cstep-num">2️⃣</div>
-            <div class="cstep-icon">📞</div>
-            <h4>Receive Call in 2 Minutes</h4>
-            <p>Our automated Krishi Mitra connects to your phone in your selected regional mother tongue.</p>
-          </div>
-
-          <div class="callback-step-card">
-            <div class="cstep-num">3️⃣</div>
-            <div class="cstep-icon">🗣️</div>
-            <h4>Listen to Mandi Prices</h4>
-            <p>Tell the assistant your crop and nearest market. You will hear the live wholesale rates spoken aloud.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
   </main>
 
   <!-- Government API Sync Modal -->
@@ -1060,7 +1027,7 @@
         <button class="modal-close-icon" id="btnCloseSync">&times;</button>
       </div>
       <div class="modal-body">
-        <p style="font-size: 0.88rem; color: var(--text-body);" data-i18n="modal_desc">
+        <p class="modal-body-text" data-i18n="modal_desc">
           Direct integration with Ministry of Agriculture Agmarknet REST API.
         </p>
 
@@ -1069,7 +1036,7 @@
           <input type="text" class="form-input" id="apiKeyInput" placeholder="Enter API Key or leave empty for local cache..." data-i18n-placeholder="modal_key_placeholder">
         </div>
 
-        <div id="apiSyncStatus" style="font-size: 0.85rem; font-weight: 600;"></div>
+        <div id="apiSyncStatus" class="sync-status-text"></div>
       </div>
       <div class="modal-footer">
         <button class="btn-secondary" id="btnModalClose" data-i18n="modal_close_btn">Close</button>
@@ -1086,7 +1053,7 @@
         <button class="modal-close-icon" id="btnCloseHostModal">&times;</button>
       </div>
       <div class="modal-body">
-        <p style="font-size: 0.88rem; color: var(--text-body); margin-bottom: 1rem;" data-i18n="modal_host_desc">
+        <p class="modal-body-text mb-1rem" data-i18n="modal_host_desc">
           List aggregated harvest produce with a guaranteed minimum base price. Verified corporate buyers can bid blind for your lot.
         </p>
 
@@ -1131,7 +1098,7 @@
           <div class="form-group">
             <label class="form-label" data-i18n="label_min_price">Set Minimum Base Price (₹ per Quintal) *</label>
             <input type="number" class="form-input" id="hostMinPrice" required min="500" placeholder="e.g., 22000">
-            <small style="color: var(--text-muted); font-size: 0.78rem;">Corporates cannot bid lower than this reserve price.</small>
+            <small class="form-hint-muted">Corporates cannot bid lower than this reserve price.</small>
           </div>
 
           <div class="form-group full-width">
@@ -1144,11 +1111,11 @@
           </div>
         </form>
 
-        <div id="hostFormStatus" style="font-size: 0.85rem; font-weight: 600; margin-top: 10px;"></div>
+        <div id="hostFormStatus" class="form-status-text"></div>
       </div>
       <div class="modal-footer">
         <button class="btn-secondary" id="btnCloseHostModalBtn" data-i18n="modal_close_btn">Cancel</button>
-        <button class="btn-primary" id="btnSubmitHostProduce" data-i18n="btn_publish_lot">🚀 Publish Lot for Bidding</button>
+        <button class="btn-primary" id="btnSubmitHostProduce" data-i18n="btn_publish_lot">Publish Lot for Bidding</button>
       </div>
     </div>
   </div>
@@ -1186,7 +1153,7 @@
           <div class="form-group">
             <label class="form-label">
               <span data-i18n="label_blind_bid_price">Your Blind Bid Price (₹ per Quintal) *</span>
-              <span id="bidMinPriceGuide" style="color: #166534; font-weight: 700; float: right;"></span>
+              <span id="bidMinPriceGuide" class="bid-min-price-float"></span>
             </label>
             <input type="number" class="form-input" id="bidPriceInput" required min="1" placeholder="Enter bid amount...">
           </div>
@@ -1204,11 +1171,11 @@
           </div>
         </form>
 
-        <div id="bidFormStatus" style="font-size: 0.85rem; font-weight: 600; margin-top: 10px;"></div>
+        <div id="bidFormStatus" class="form-status-text"></div>
       </div>
       <div class="modal-footer">
         <button class="btn-secondary" id="btnCloseBidModalBtn" data-i18n="modal_close_btn">Cancel</button>
-        <button class="btn-primary" id="btnSubmitBlindBid" data-i18n="btn_submit_sealed_bid">🔒 Submit Sealed Blind Bid</button>
+        <button class="btn-primary" id="btnSubmitBlindBid" data-i18n="btn_submit_sealed_bid">Submit Sealed Blind Bid</button>
       </div>
     </div>
   </div>
@@ -1240,8 +1207,35 @@
     </div>
   </footer>
 
+  <!-- Slide-out Sidebar Navigation (tabs moved here from the header) -->
+  <div class="nav-backdrop" id="navBackdrop"></div>
+  <aside class="nav-sidebar" id="navSidebar" aria-label="Main navigation">
+    <div class="nav-sidebar-head">
+      <span class="nav-sidebar-title">🌾 Menu</span>
+      <button class="nav-sidebar-close" id="navSidebarClose" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="nav-sidebar-tabs">
+      <button class="nav-tab active" data-view="home">
+        <span>🏠</span> <span data-i18n="nav_home">Home</span>
+      </button>
+      <button class="nav-tab" data-view="farmer">
+        <span>👨‍🌾</span> <span data-i18n="nav_farmer_portal">Farmer Portal</span>
+      </button>
+      <button class="nav-tab" data-view="fpo">
+        <span>🌾</span> <span data-i18n="nav_fpo_portal">FPO Portal</span>
+      </button>
+      <button class="nav-tab" data-view="corporate">
+        <span>🏢</span> <span data-i18n="nav_corporate_portal">Corporate Portal</span>
+      </button>
+      <button class="nav-tab" data-view="farmer">
+        <span>📞</span> <span data-i18n="nav_callback">Voice Call Back</span>
+      </button>
+    </nav>
+    <div class="nav-sidebar-foot">AgriLink · Team APEX {SYNTAX} · MGIT</div>
+  </aside>
+
   <!-- Scripts -->
-  <script src="js/i18n.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/i18n.js?v=2"></script>
+  <script src="js/app.js?v=2"></script>
 </body>
 </html>

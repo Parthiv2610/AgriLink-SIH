@@ -42,16 +42,25 @@
         "bid_price": 24750,
         "total_amount": 9900000,
         "timestamp": "2026-09-10T11:15:00Z"
+      },
+      {
+        "id": "BID-04",
+        "company_name": "swf",
+        "buyer_name": "wefwf",
+        "gstin": "36aaaasaqgfeqrgt4e",
+        "bid_price": 30000,
+        "total_amount": 12000000,
+        "timestamp": "2026-09-10T13:31:59.905299+00:00"
       }
     ],
     "awarded_bid": {
-      "id": "BID-03",
-      "company_name": "MTR Foods Agro Sourcing",
-      "buyer_name": "Ananya Roy",
-      "gstin": "29AAACM5678B1ZP",
-      "bid_price": 24750,
-      "total_amount": 9900000,
-      "awarded_at": "2026-09-12T18:00:00Z"
+      "id": "BID-04",
+      "company_name": "swf",
+      "buyer_name": "wefwf",
+      "gstin": "36aaaasaqgfeqrgt4e",
+      "bid_price": 30000,
+      "total_amount": 12000000,
+      "awarded_at": "2026-09-10T13:32:04.405233+00:00"
     }
   },
   {
@@ -206,7 +215,7 @@
     "unit": "Quintals",
     "harvest_date": "2026-09-01",
     "min_price": 3200,
-    "status": "AWARDED",
+    "status": "OPEN",
     "created_at": "2026-09-06T11:00:00Z",
     "closing_time": "2026-09-14T18:00:00Z",
     "bids": [
@@ -229,14 +238,6 @@
         "timestamp": "2026-09-08T16:25:00Z"
       }
     ],
-    "awarded_bid": {
-      "id": "BID-42",
-      "company_name": "Adani Wilmar (Fortune)",
-      "buyer_name": "Pranav Trivedi",
-      "gstin": "24AAACA5555G1Z9",
-      "bid_price": 3620,
-      "total_amount": 5430000,
-      "awarded_at": "2026-09-12T03:30:52.018829+00:00"
-    }
+    "awarded_bid": null
   }
 ]
